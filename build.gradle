@@ -36,7 +36,7 @@ publishing {
         maven(MavenPublication) {
             groupId = 'io.com.open'
             artifactId = 'java-open-valid'
-            version = '0.0.1'
+            version = '0.0.1-SNAPSHOT'
 
             from components.java
         }
