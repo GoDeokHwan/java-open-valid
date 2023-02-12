@@ -1,6 +1,5 @@
 package io.com.open.javaopenvalid.request;
 
-import com.fasterxml.jackson.annotation.JsonFormat;
 import io.com.open.javaopenvalid.support.Password;
 import io.com.open.javaopenvalid.support.PhoneNumber;
 
@@ -49,7 +48,6 @@ public class ValidRequest {
     // 과거인지
 //    @PositiveOrZero
     @Past(message = "오늘 날짜보다 과거가 아닙니다.")
-    @JsonFormat(pattern = "YYYY-MM-dd HH:mm:ss")
     private LocalDateTime date;
 
     /***
