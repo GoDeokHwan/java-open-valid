@@ -2,6 +2,7 @@ plugins {
     id 'java'
     id 'org.springframework.boot' version '2.7.8'
     id 'io.spring.dependency-management' version '1.0.15.RELEASE'
+    id 'maven-publish'
 }
 
 group = 'io.com.open'
@@ -30,8 +31,14 @@ tasks.named('test') {
     useJUnitPlatform()
 }
 
-allprojects {
-    repositories {
-        maven { url 'https://jitpack.io' }
+publishing {
+    publications {
+        maven(MavenPublication) {
+            groupId = 'io.com.open'
+            artifactId = 'java-open-valid'
+            version = '1.0'
+
+            from components.java
+        }
     }
 }
