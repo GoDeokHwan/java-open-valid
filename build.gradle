@@ -31,14 +31,23 @@ tasks.named('test') {
     useJUnitPlatform()
 }
 
+//publishing {
+//    publications {
+//        maven(MavenPublication) {
+//            groupId = 'io.com.open'
+//            artifactId = 'java-open-valid'
+//            version = '0.0.1-SNAPSHOT'
+//
+//            from components.java
+//        }
+//    }
+//}
+
 publishing {
     publications {
-        maven(MavenPublication) {
-            groupId = 'io.com.open'
-            artifactId = 'java-open-valid'
-            version = '0.0.1-SNAPSHOT'
-
-            from components.java
+        mavenJava(MavenPublication){
+            // bootJar is the default build task configured by Spring Boot
+            artifact bootJar
         }
     }
 }
