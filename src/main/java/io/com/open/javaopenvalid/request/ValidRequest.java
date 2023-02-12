@@ -63,6 +63,9 @@ public class ValidRequest {
     @PhoneNumber(message = "The format of the phone number message is strange.")
     private String phoneNumber;
 
+    /**
+     * 비밀번호
+     * */
     @NotBlank(message = "password cannot be empty or null.")
     @Size(
         min = 8, max = 16,
