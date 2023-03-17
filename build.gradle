@@ -34,7 +34,7 @@ tasks.named('test') {
 }
 
 tasks.named("bootJar") {
-    archiveClassifier = 'boot'
+    enabled = false
 }
 
 tasks.named("jar") {
@@ -61,7 +61,7 @@ publishing {
             version = version
 
 //            from components.java
-            artifact("build/libs/$rootProject.name-$version" + "-plan.jar") {
+            artifact("build/libs/$rootProject.name-$version" + ".jar") {
                 extension 'jar'
             }
         }
