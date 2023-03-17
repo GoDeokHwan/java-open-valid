@@ -7,11 +7,16 @@ plugins {
 
 group = 'io.com.open'
 version = '0.0.1-SNAPSHOT'
-sourceCompatibility = '8'
+sourceCompatibility = JavaVersion.VERSION_1_8
+targetCompatibility = JavaVersion.VERSION_1_8
 
 configurations {
     compileOnly {
         extendsFrom annotationProcessor
+    }
+    runtimeClasspath {
+        extendsFrom
+        implementation
     }
 }
 
@@ -28,14 +33,9 @@ tasks.named('test') {
     useJUnitPlatform()
 }
 
-configurations {
-    runtimeClasspath {
-        extendsFrom
-        implementation
-    }
-}
+bootJar {  enabled = false  }
+jar {  enabled = true  }
 
-// 외부 라이브러리 의존성 추가
 jar {
     manifest {
         attributes 'java-open-valid': 'io.com.open'
