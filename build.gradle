@@ -21,9 +21,6 @@ repositories {
 
 dependencies {
     implementation 'org.springframework.boot:spring-boot-starter-validation'
-//    implementation 'org.springframework.boot:spring-boot-starter-web'
-//    compileOnly 'org.projectlombok:lombok'
-//    annotationProcessor 'org.projectlombok:lombok'
     testImplementation 'org.springframework.boot:spring-boot-starter-test'
 }
 
@@ -31,17 +28,25 @@ tasks.named('test') {
     useJUnitPlatform()
 }
 
-//publishing {
-//    publications {
-//        maven(MavenPublication) {
-//            groupId = 'io.com.open'
-//            artifactId = 'java-open-valid'
-//            version = '0.0.1-SNAPSHOT'
-//
-//            from components.java
-//        }
-//    }
-//}
+configurations {
+    runtimeClasspath {
+        extendsFrom
+        implementation
+    }
+}
+
+// 외부 라이브러리 의존성 추가
+jar {
+    manifest {
+        attributes 'java-open-valid': 'io.com.open'
+    }
+    from {
+        configurations.runtimeClasspath.collect {
+            it.isDirectory() ? it : zipTree(it)
+        }
+    }
+    duplicatesStrategy = DuplicatesStrategy.EXCLUDE
+}
 
 publishing {
     publications {
