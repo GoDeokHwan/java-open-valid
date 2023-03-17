@@ -33,9 +33,6 @@ tasks.named('test') {
     useJUnitPlatform()
 }
 
-bootJar {  enabled = false  }
-jar {  enabled = true  }
-
 jar {
     manifest {
         attributes 'java-open-valid': 'io.com.open'
@@ -50,9 +47,15 @@ jar {
 
 publishing {
     publications {
-        mavenJava(MavenPublication){
-            // bootJar is the default build task configured by Spring Boot
-            artifact bootJar
+        maven(MavenPublication) {
+            groupId = group
+            artifactId = rootProject.name
+            version = version
+
+//            from components.java
+            artifact("build/libs/$rootProject.name-$version" + "-plan.jar") {
+                extension 'jar'
+            }
         }
     }
 }
